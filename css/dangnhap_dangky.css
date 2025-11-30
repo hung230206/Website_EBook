@@ -1,0 +1,197 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'montserrat';
+}
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#Dangnhap, #quenmk, #Dangky, #OTP{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#DN, #TTK{
+    margin-bottom: 20px;    
+    color: black;
+}
+.Nhap {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+#TK, #MK , #MK1{
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: black;
+}
+#NTK, #NMK, #mk1, #mk2{
+        margin-bottom: 15px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+}
+#QMK{
+    font-size: small;
+    color: gray;
+    margin-left: 1px;
+}
+#QMK:hover{
+    color: #51a5f9;
+}
+#BDN, #BDK, #gui, #xacnhan{
+    cursor: pointer;
+}
+#dangky {
+    font-size: smaller;
+    margin-top: 10px;
+    color: black;
+}
+#dk{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #51a5f9;
+}
+#dk:hover{
+    text-decoration: underline;
+}
+.BDN1{
+    margin-bottom: 5px;
+    margin-top: 20px;
+    background-color: #51a5f9;
+    color: black;
+    width: 120px;
+    height: 30px;
+    margin: 20px auto 5px auto; 
+    border-radius: 3px;
+    border: none;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    font-size: 13px;
+    transition: transform .08s ease, box-shadow .12s ease;
+}
+.BDN1:active { transform: translateY(0.3px); }
+.BDN1:focus { outline: 3px solid rgba(21,101,192,.25); }
+.BDN1:hover {
+    background-color: #51a5f9;     
+    box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.1); /* phủ lớp trắng nhạt */
+}
+.password-box {
+    position: relative;
+    width: 100%;
+}
+
+.password-box input {
+    width: 93%;
+    padding-right: 40px; /* chừa chỗ cho con mắt */
+}
+
+#eye-btn, #eye-btn1, #eye-btn2{
+    position: absolute;
+    right: 10px;
+    top: 39%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    height: 20px;
+    width: 20px;
+}
+
+#eye-btn svg, #eye-btn1 svg, #eye-btn2 svg{
+    pointer-events: none; /* để click không vướng SVG */
+}
+.error-msg {
+    color: red;
+    font-size: 0.9rem;
+    margin: auto auto 4px 1px;
+    display: none; /* mặc định ẩn */
+}
+#h{
+    margin: 0%;
+    display: flex;
+    justify-content: center;
+}
+#haynhap{
+    font-size: medium;
+    color: gray;
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+}
+#datlaimk{
+    display: flex;
+    flex-direction: column;
+    width: 430px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+#khoiphucmk{
+    margin: 25px auto 5px 8px;
+    padding: 10px;
+    width: 400px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.errormsg {
+    color: red;
+    font-size: 0.9rem;
+    margin: auto auto 5px 10px;
+    display: none; /* mặc định ẩn */
+}
+#gui{
+    background-color: #51a5f9;
+    color: black;
+    width: 120px;
+    height: 33px;
+    margin: 25px auto 5px auto; 
+    border-radius: 3px;
+    border: none;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    font-size: 13px;
+    transition: transform .08s ease, box-shadow .12s ease;
+}
+#gui:active { transform: translateY(0.3px); }
+#gui:focus { outline: 3px solid rgba(21,101,192,.25); }
+#gui:hover {
+    background-color: #51a5f9;       /* giữ màu gốc */
+    box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.1); /* phủ lớp trắng nhạt */
+}
+#quaylaiDN, #help{
+    margin-top: 30px;
+    font-size: 15px;
+}
+#linkDN, #linkLH{
+    text-decoration: none;
+    color: #51a5f9;
+}
+#linkDN:hover{
+    text-decoration: underline;
+}
+#linkLH:hover{
+    text-decoration: underline;
+}
+#chinhsach{
+    margin-top: 10px;
+    font-size: small;
+    font-weight: 500;
+    color: gray;
+}
+.dongy{
+    color: gray;
+}

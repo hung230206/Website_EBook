@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>Đăng ký</title>
+    <style>
+        html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'montserrat';
+}
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#Dangnhap, #quenmk, #Dangky, #OTP{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#DN, #TTK{
+    margin-bottom: 20px;    
+    color: black;
+}
+.Nhap {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+#TK, #MK , #MK1{
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: black;
+}
+#NTK, #NMK, #mk1, #mk2{
+        margin-bottom: 15px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+}
+#QMK{
+    font-size: small;
+    color: gray;
+    margin-left: 1px;
+}
+#QMK:hover{
+    color: #51a5f9;
+}
+#BDN, #BDK, #gui, #xacnhan{
+    cursor: pointer;
+}
+#dangky {
+    font-size: smaller;
+    margin-top: 10px;
+    color: black;
+}
+#dk{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #51a5f9;
+}
+#dk:hover{
+    text-decoration: underline;
+}
+.BDN1{
+    margin-bottom: 5px;
+    margin-top: 20px;
+    background-color: #51a5f9;
+    color: black;
+    width: 120px;
+    height: 30px;
+    margin: 20px auto 5px auto; 
+    border-radius: 3px;
+    border: none;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    font-size: 13px;
+    transition: transform .08s ease, box-shadow .12s ease;
+}
+.BDN1:active { transform: translateY(0.3px); }
+.BDN1:focus { outline: 3px solid rgba(21,101,192,.25); }
+.BDN1:hover {
+    background-color: #51a5f9;     
+    box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.1); /* phủ lớp trắng nhạt */
+}
+.password-box {
+    position: relative;
+    width: 100%;
+}
+
+.password-box input {
+    width: 93%;
+    padding-right: 40px; /* chừa chỗ cho con mắt */
+}
+
+#eye-btn, #eye-btn1, #eye-btn2{
+    position: absolute;
+    right: 10px;
+    top: 39%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    height: 20px;
+    width: 20px;
+}
+
+#eye-btn svg, #eye-btn1 svg, #eye-btn2 svg{
+    pointer-events: none; /* để click không vướng SVG */
+}
+.error-msg {
+    color: red;
+    font-size: 0.9rem;
+    margin: auto auto 4px 1px;
+    display: none; /* mặc định ẩn */
+}
+#h{
+    margin: 0%;
+    display: flex;
+    justify-content: center;
+}
+#haynhap{
+    font-size: medium;
+    color: gray;
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+}
+#datlaimk{
+    display: flex;
+    flex-direction: column;
+    width: 430px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+#khoiphucmk{
+    margin: 25px auto 5px 8px;
+    padding: 10px;
+    width: 400px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.errormsg {
+    color: red;
+    font-size: 0.9rem;
+    margin: auto auto 5px 10px;
+    display: none; /* mặc định ẩn */
+}
+#gui{
+    background-color: #51a5f9;
+    color: black;
+    width: 120px;
+    height: 33px;
+    margin: 25px auto 5px auto; 
+    border-radius: 3px;
+    border: none;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    font-size: 13px;
+    transition: transform .08s ease, box-shadow .12s ease;
+}
+#gui:active { transform: translateY(0.3px); }
+#gui:focus { outline: 3px solid rgba(21,101,192,.25); }
+#gui:hover {
+    background-color: #51a5f9;       /* giữ màu gốc */
+    box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.1); /* phủ lớp trắng nhạt */
+}
+#quaylaiDN, #help{
+    margin-top: 30px;
+    font-size: 15px;
+}
+#linkDN, #linkLH{
+    text-decoration: none;
+    color: #51a5f9;
+}
+#linkDN:hover{
+    text-decoration: underline;
+}
+#linkLH:hover{
+    text-decoration: underline;
+}
+#chinhsach{
+    margin-top: 10px;
+    font-size: small;
+    font-weight: 500;
+    color: gray;
+}
+.dongy{
+    color: gray;
+}
+
+    </style>
+</head>
+<body id="Dangky">
+    <h1 id="TTK">Tạo tài khoản</h1>
+    <div class="Nhap">
+            <div id="TK">Email</div>
+            <input id="NTK" type="email">
+            <div id="erremail" class="error-msg"></div> <!-- hiển thị lỗi -->
+            <div id="MK">Mật khẩu</div>
+            <div class="password-box">
+                <input id="NMK" type="password">
+                <!-- Con mắt 2D nằm *bên trong* input -->
+                <button type="button" id="eye-btn" aria-label="Hiện mật khẩu">
+                    <svg id="eye-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2">
+                        <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="errMK" class="error-msg"></div>
+            <a href="QuenMK.html" id="QMK">Quên mật khẩu?</a>     
+            <button  class="BDN1" id="BDK"  type="button" aria-label="Đăng ký">Đăng ký</button>
+        </div>  
+        <div id="chinhsach">Bằng cách nhấp vào Đăng ký, bạn đồng ý với<br/> <a href="" class="dongy">Điều Khoản Dịch Vụ</a> và <a href="" class="dongy">Chính Sách Bảo Mật</a></div>
+        <div id="quaylaiDN">Bạn đã có tài khoản? <a href="Dangnhap.html" id="linkDN">Đăng nhập</a></div>
+        <div id="help">Cần thêm trợ giúp <a href="" id="linkLH">Liên hệ</a></div>
+        <script>
+            // --- Con mắt 2D ---
+            const pw = document.getElementById("NMK");
+            const btn = document.getElementById("eye-btn");
+            const icon = document.getElementById("eye-icon");
+
+            let open = true;
+
+            btn.addEventListener("click", () => {
+                if (open) {
+                    pw.type = "text";
+                    open = false;
+                    icon.innerHTML = `
+                        <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                        <line x1="3" y1="3" x2="21" y2="21" stroke="black" stroke-width="2"/>
+                    `;
+                } else {
+                    pw.type = "password";
+                    open = true;
+                    icon.innerHTML = `
+                        <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    `;
+                }
+            });
+
+            // --- Kiểm tra email + mật khẩu ---
+            const registerBtn = document.getElementById("BDK");
+            const emailInput = document.getElementById("NTK");
+            const passwordInput = document.getElementById("NMK");
+            const emailError = document.getElementById("erremail");
+            const passwordError = document.getElementById("errMK");
+
+            registerBtn.addEventListener("click", () => {
+                const email = emailInput.value.trim();
+                const password = passwordInput.value.trim();
+                let valid = true;
+
+                // reset lỗi
+                emailError.style.display = "none";
+                emailError.textContent = "";
+                passwordError.style.display = "none";
+                passwordError.textContent = "";
+
+                // kiểm tra email
+                const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/i;
+                if (email === "") {
+                    emailError.textContent = "Vui lòng nhập email";
+                    emailError.style.display = "block";
+                    valid = false;
+                } else if (!emailPattern.test(email)) {
+                    emailError.textContent = "Email không hợp lệ";
+                    emailError.style.display = "block";
+                    valid = false;
+                }
+
+                // kiểm tra mật khẩu
+                if (password === "") {
+                    passwordError.textContent = "Vui lòng nhập mật khẩu";
+                    passwordError.style.display = "block";
+                    valid = false;
+                } else if (password.length < 8) {
+                    passwordError.textContent = "Mật khẩu quá ngắn (ít nhất 8 ký tự)";
+                    passwordError.style.display = "block";
+                    valid = false;
+                } else {
+                    const upperCase = /[A-Z]/.test(password);
+                    const lowerCase = /[a-z]/.test(password);
+                    const number = /[0-9]/.test(password);
+                    const specialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+                    if (!upperCase || !lowerCase || !number || !specialChar) {
+                        passwordError.textContent = "Mật khẩu yếu. Bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt.";
+                        passwordError.style.display = "block";
+                        valid = false;
+                    }
+                }
+
+                // nếu hợp lệ
+                if (valid) {
+                    alert(`Email và mật khẩu hợp lệ! Chúc mừng bạn đã đăng ký thành công.`);
+                    // sau khi kiểm tra hợp lệ trong trang đăng ký
+                    localStorage.setItem("emailUser", email);
+                    localStorage.setItem("passUser", password);
+                    window.location.href = "Dangnhap.html";
+                }
+            });
+        </script>
+
+</body>
+</html>

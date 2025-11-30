@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>GreenLife - Giỏ hàng</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* --- CSS RIÊNG CHO GIỎ HÀNG --- */
+        .cart-page { background: #fff; padding: 30px; border-radius: 15px; box-shadow: var(--shadow); }
+        .cart-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        .cart-table th, .cart-table td { padding: 15px; text-align: left; border-bottom: 1px solid #eee; }
+        .cart-table th { background-color: var(--light-green); color: var(--primary); font-weight: 700; }
+        
+        .cart-item-info { display: flex; align-items: center; gap: 15px; }
+        .cart-item-img { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; }
+        
+        .qty-box { display: flex; align-items: center; border: 1px solid #ddd; border-radius: 5px; width: fit-content; background: #fff; }
+        .qty-btn { width: 30px; height: 30px; border: none; background: white; color: var(--primary); font-weight: bold; cursor: pointer; }
+        .qty-btn:hover { background-color: #f0f0f0; }
+        .qty-val { width: 30px; text-align: center; font-weight: 700; border-left: 1px solid #eee; border-right: 1px solid #eee; line-height: 30px; }
+
+        .btn-remove { color: var(--accent); cursor: pointer; background: none; border: none; font-weight: 600; }
+        .cart-summary { text-align: right; margin-top: 20px; padding-top: 20px; border-top: 2px solid #eee; }
+        .total-price { font-size: 24px; font-weight: 800; color: var(--accent); }
+        .btn-checkout { background: var(--primary); color: white; padding: 12px 30px; border: none; border-radius: 30px; font-weight: bold; cursor: pointer; margin-top: 15px; }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">GreenLife.</div>
+            <nav>
+                <ul class="nav-links">
+                     <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="sanpham.html">Sản phẩm</a></li>
+                    <li><a href="gioithieu.html">Giới thiệu </a></li>
+                    <li><a href="lienhe.html">Liên hệ</a></li>
+                    <li><a href="dangnhap.html">Đăng nhập</a></li>
+                    <li><a href="dangki.html">Đăng kí</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container" style="margin-top: 40px; margin-bottom: 40px;">
+        <h2 style="color: var(--primary); margin-bottom: 20px;">Giỏ hàng của bạn</h2>
+        
+        <div class="cart-page">
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th style="width: 45%;">Sản phẩm</th>
+                        <th>Đơn giá</th>
+                        <th>Số lượng</th>
+                        <th>Thành tiền</th>
+                        <th>Xóa</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-body">
+                    </tbody>
+            </table>
+
+            <div class="cart-summary">
+                <p>Tổng tiền thanh toán:</p>
+                <div class="total-price" id="total-price">0đ</div>
+                <button class="btn-checkout" onclick="alert('Đặt hàng thành công!')">Tiến hành đặt hàng</button>
+            </div>
+        </div>
+        
+        <div style="margin-top: 20px;">
+            <a href="sanpham.html" style="color: var(--primary); font-weight: bold;">← Tiếp tục mua cây</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 GreenLife Store. Mang màu xanh đến mọi nhà.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Hàm hiển thị giỏ hàng
+        function loadCart() {
+            const cart = JSON.parse(localStorage.getItem('greenlife_cart')) || [];
+            const tbody = document.getElementById('cart-body');
+            const totalEl = document.getElementById('total-price');
+            
+            tbody.innerHTML = '';
+            let grandTotal = 0;
+
+            if (cart.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 30px; color: #777;">Giỏ hàng đang trống 🌿. <br><a href="sanpham.html" style="color:var(--primary)">Đi mua ngay</a></td></tr>';
+                totalEl.innerText = '0đ';
+                return;
+            }
+
+            cart.forEach((item, index) => {
+                const total = item.price * item.quantity;
+                grandTotal += total;
+
+                const priceFormatted = item.price.toLocaleString('vi-VN') + 'đ';
+                const totalFormatted = total.toLocaleString('vi-VN') + 'đ';
+
+                const row = `
+                    <tr>
+                        <td>
+                            <div class="cart-item-info">
+                                <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+                                <b style="color: var(--primary)">${item.name}</b>
+                            </div>
+                        </td>
+                        <td>${priceFormatted}</td>
+                        <td>
+                            <div class="qty-box">
+                                <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
+                                <div class="qty-val">${item.quantity}</div>
+                                <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+                            </div>
+                        </td>
+                        <td style="color: var(--accent); font-weight:bold;">${totalFormatted}</td>
+                        <td>
+                            <button class="btn-remove" onclick="removeItem(${index})">🗑️</button>
+                        </td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+
+            totalEl.innerText = grandTotal.toLocaleString('vi-VN') + 'đ';
+        }
+
+        // 2. Hàm thay đổi số lượng (+ hoặc -)
+        function changeQty(index, delta) {
+            let cart = JSON.parse(localStorage.getItem('greenlife_cart')) || [];
+            
+            // Cộng trừ số lượng
+            cart[index].quantity += delta;
+
+            // Nếu số lượng giảm xuống < 1 thì hỏi có xóa không
+            if (cart[index].quantity < 1) {
+                const confirmDelete = confirm("Bạn có muốn xóa sản phẩm này khỏi giỏ hàng?");
+                if (confirmDelete) {
+                    cart.splice(index, 1);
+                } else {
+                    cart[index].quantity = 1; // Nếu không xóa thì trả về 1
+                }
+            }
+
+            // Lưu lại và vẽ lại bảng
+            localStorage.setItem('greenlife_cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        // 3. Hàm xóa sản phẩm
+        function removeItem(index) {
+            if(confirm("Xóa sản phẩm này?")) {
+                let cart = JSON.parse(localStorage.getItem('greenlife_cart')) || [];
+                cart.splice(index, 1); 
+                localStorage.setItem('greenlife_cart', JSON.stringify(cart)); 
+                loadCart(); 
+            }
+        }
+
+        // Chạy khi tải trang
+        loadCart();
+    </script>
+    
+
+</body>
+
+</html>

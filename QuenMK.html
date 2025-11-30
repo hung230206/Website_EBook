@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/dangnhap_dangky.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>Đặt lại mật khẩu</title>
+</head>
+<body id="quenmk">
+    <div id="datlaimk">
+        <div>
+            <h1 id="h">Đặt lại mật khẩu của bạn</h1>
+            <div id="haynhap">Nhập email của bạn </div>
+        </div>
+        <div>
+            <input id="khoiphucmk" type="email" placeholder="Email">
+            <div id="erremail" class="errormsg"></div>
+        </div>
+        <button id="gui" type="button">Gửi</button>
+    </div>
+
+    <div id="quaylaiDN">Quay lại <a href="Dangnhap.html" id="linkDN">Đăng nhập</a></div>
+    <div id="help">Cần thêm trợ giúp <a href="" id="linkLH">Liên hệ</a></div>
+    <script>
+            const loginBtn = document.getElementById("gui");
+            const usernameInput = document.getElementById("khoiphucmk");
+            const errUsername = document.getElementById("erremail");
+
+            loginBtn.addEventListener("click", () => {
+                const username = usernameInput.value.trim();
+                let valid = true;
+
+                // reset lỗi
+                errUsername.style.display = "none";
+                errUsername.textContent = "";
+
+                // kiểm tra email
+                const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/i;
+                if (username === "") {
+                    errUsername.textContent = "Vui lòng nhập email";
+                    errUsername.style.display = "block";
+                    valid = false;
+                } else if (!emailPattern.test(username)) {
+                    errUsername.textContent = "Email không hợp lệ";
+                    errUsername.style.display = "block";
+                    valid = false;
+                }
+
+                // nếu hợp lệ
+                if (valid) {
+                    //  Tạo OTP 6 số
+                    const otp = Math.floor(100000 + Math.random() * 900000);
+
+                    //  Lưu OTP và Email vào localStorage
+                    localStorage.setItem("resetEmail", username);
+                    localStorage.setItem("resetOTP", otp);
+
+                    //  (Fake) gửi OTP — báo bằng alert
+                    alert(`Mã OTP đã được gửi tới email: ${username}\nMã OTP: ${otp}`);
+
+                    // Chuyển sang trang nhập mã
+                    window.location.href = "QuenMK_OTP.html";
+                }
+            });
+
+        </script>
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenLife - Trang chủ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* --- CSS RIÊNG CHO TRANG CHỦ --- */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr; 
+            gap: 30px;
+            align-items: start;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--white);
+            border: 2px solid var(--accent); 
+            border-radius: 8px;
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+        }
+        .sidebar-title {
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+        }
+        .promo-item { margin-bottom: 20px; border-bottom: 1px dashed #ddd; padding-bottom: 10px; }
+        .promo-item h4 { font-size: 1rem; margin-bottom: 5px; }
+        .promo-item p { font-size: 0.9rem; color: #666; margin-bottom: 5px; }
+        .promo-date { font-size: 0.8rem; color: #999; font-style: italic; }
+
+        /* Hero Banner */
+        .hero {
+            background: linear-gradient(rgba(45, 106, 79, 0.85), rgba(27, 67, 50, 0.8)), url('https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--white);
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .hero h1 { font-size: 2.2rem; margin-bottom: 10px; }
+        .hero .btn { background: white; color: var(--primary); }
+
+        /* Grid & Flip Card */
+        .book-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .book-flip-container { background-color: transparent; width: 100%; height: 360px; perspective: 1000px; cursor: pointer; }
+        .book-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.8s; transform-style: preserve-3d; box-shadow: var(--shadow); border-radius: 10px; }
+        .book-flip-container:hover .book-inner { transform: rotateY(-180deg); }
+        .book-front, .book-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 10px; overflow: hidden; }
+        .book-front { background-color: #fff; }
+        .book-front img { width: 100%; height: 100%; object-fit: cover; }
+        .book-back { background-color: var(--white); transform: rotateY(180deg); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; border: 2px solid var(--primary); }
+        .book-back h3 { font-size: 1.2rem; color: var(--primary); margin-bottom: 10px; }
+        .book-back .price { font-size: 1.5rem; color: var(--accent); font-weight: bold; margin-bottom: 20px; }
+
+        @media (max-width: 768px) {
+            .main-layout { grid-template-columns: 1fr; }
+            .book-grid-3 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+     
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">GreenLife.</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="sanpham.html">Sản phẩm</a></li>
+                    <li><a href="gioithieu.html">Giới thiệu </a></li>
+                    <li><a href="lienhe.html">Liên hệ</a></li>
+                    <li><a href="dangnhap.html">Đăng nhập</a></li>
+                    <li><a href="dangki.html">Đăng kí</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="search-bar-section">
+        <div class="container search-wrapper">
+            <div class="search-box">
+                <input type="text" placeholder="Tìm kiếm loài cây bạn thích...">
+                <button class="search-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+            </div>
+
+            <a href="giohang.html"><div class="cart-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                <span>Giỏ hàng (2)</span>
+            </div>
+             </a>
+        </div>
+    </section>
+
+    <div class="container main-layout">
+        
+        <aside class="sidebar">
+            <h3 class="sidebar-title">🔥 Ưu đãi Xanh</h3>
+            
+            <div class="promo-item">
+                <h4>Combo "Lọc Không Khí"</h4>
+                <p>Giảm 30% khi mua Lưỡi Hổ & Lan Ý.</p>
+                <span class="promo-date">Hết hạn: 30/11</span>
+            </div>
+
+            <div class="promo-item">
+                <h4>Tặng chậu đất nung</h4>
+                <p>Cho đơn hàng từ 500k trở lên.</p>
+                <span class="promo-date">Số lượng có hạn</span>
+            </div>
+
+            <div class="promo-item">
+                <h4>Miễn phí vận chuyển</h4>
+                <p>Áp dụng nội thành cho cây kích thước nhỏ.</p>
+            </div>
+
+            <h3 class="sidebar-title" style="margin-top: 20px;">Danh mục cây</h3>
+            <ul style="padding-left: 10px;">
+                <li style="margin-bottom:8px; cursor:pointer;">➤ Cây Để Bàn</li>
+                <li style="margin-bottom:8px; cursor:pointer;">➤ Cây Thủy Sinh</li>
+                <li style="margin-bottom:8px; cursor:pointer;">➤ Sen Đá & Xương Rồng</li>
+                <li style="margin-bottom:8px; cursor:pointer;">➤ Cây Nội Thất Lớn</li>
+                <li style="margin-bottom:8px; cursor:pointer;">➤ Phụ Kiện Làm Vườn</li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            
+            <section class="hero">
+                <h1>Sống Xanh Mỗi Ngày</h1>
+                <p>Mang thiên nhiên vào không gian sống của bạn để thư giãn và an yên.</p>
+                <a href="#" class="btn">Khám phá ngay</a>
+            </section>
+
+            <h2 style="color: var(--primary-color); margin-bottom: 20px; border-left: 5px solid var(--primary-color); padding-left: 10px;">Cây Cảnh Nổi Bật</h2>
+            
+            <div class="book-grid-3"> 
+                 <div class="book-flip-container">
+                    <div class="book-inner">
+                        <div class="book-front">
+                            <img src="https://trucvufarm.com.vn/wp-content/uploads/2024/10/Cay-Bang-Singapore-4.jpg" alt="Bàng Singapore">
+                        </div>
+                        <div class="book-back">
+                            <h3>Bàng Singapore</h3>
+                            <p class="author">Loại: Văn phòng</p>
+                            <p style="font-size: 0.9rem; margin-bottom: 10px;">Lá to tròn, dáng đứng thẳng mạnh mẽ...</p>
+                            <span class="price">320.000đ</span>
+                            <a href="giohang.html" class="btn">Thêm vào giỏ hàng</a>
+                        </div>
+                    </div>
+                </div>
+                
+                
+
+                <div class="book-flip-container">
+                    <div class="book-inner">
+                        <div class="book-front">
+                            <img src="https://images.unsplash.com/photo-1604762524889-3e2fcc145683?auto=format&fit=crop&w=600&q=80" alt="Lưỡi Hổ">
+                        </div>
+                        <div class="book-back">
+                            <h3>Lưỡi Hổ Viền Vàng</h3>
+                            <p class="author">Loại: Lọc không khí</p>
+                            <p style="font-size: 0.9rem; margin-bottom: 10px;">Hấp thụ khí độc, nhả oxy vào ban đêm...</p>
+                            <span class="price">145.000đ</span>
+                            <a href="giohang.html" class="btn">Thêm vào giỏ hàng</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="book-flip-container">
+                    <div class="book-inner">
+                        <div class="book-front">
+                            <img src="https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=600&q=80" alt="Xương Rồng">
+                        </div>
+                        <div class="book-back">
+                            <h3>Xương Rồng Tai Thỏ</h3>
+                            <p class="author">Loại: Để bàn</p>
+                            <p style="font-size: 0.9rem; margin-bottom: 10px;">Dễ chăm sóc, chịu hạn tốt, hình dáng cute...</p>
+                            <span class="price">85.000đ</span>
+                            <a href="giohang.html" class="btn">Thêm vào giỏ hàng</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="book-flip-container">
+                    <div class="book-inner">
+                        <div class="book-front">
+                            <img src="img/kiemtien.jpg" alt="Kim Tiền">
+                        </div>
+                        <div class="book-back">
+                            <h3>Cây Kim Tiền</h3>
+                            <p class="author">Loại: Tài lộc</p>
+                            <p style="font-size: 0.9rem; margin-bottom: 10px;">Mang lại may mắn và tiền tài cho gia chủ...</p>
+                            <span class="price">190.000đ</span>
+                            <a href="giohang.html" class="btn">Thêm vào giỏ hàng</a>
+                        </div>
+                    </div>
+                </div>
+                 
+               
+
+<div class="book-flip-container">
+                    <div class="book-inner">
+                        <div class="book-front">
+                            <img src="img/monstera.jpg" alt="Monstera">
+                        </div>
+                        <div class="book-back">
+                            <h3>Monstera Trầu Bà</h3>
+                            <p class="author">Loại: Cây nội thất</p>
+                            <p style="font-size: 0.9rem; margin-bottom: 10px;">Lá xẻ độc đáo, biểu tượng của sự sang trọng...</p>
+                            <span class="price">250.000đ</span>
+                            <a href="giohang.html" class="btn">Thêm vào giỏ hàng</a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="book-flip-container">
+                    <div class="book-inner">
+                        <div class="book-front">
+                            <img src="https://images.unsplash.com/photo-1545241047-6083a3684587?auto=format&fit=crop&w=600&q=80" alt="Lan Ý">
+                        </div>
+                        <div class="book-back">
+                            <h3>Lan Ý (Huệ Tây)</h3>
+                            <p class="author">Loại: Có hoa</p>
+                            <p style="font-size: 0.9rem; margin-bottom: 10px;">Hoa trắng tinh khôi, cân bằng năng lượng...</p>
+                            <span class="price">120.000đ</span>
+                            <a href="giohang.html" class="btn">Thêm vào giỏ hàng</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 GreenLife Store. Mang màu xanh đến mọi nhà.</p>
+        </div>
+    </footer>
+
+</body>
+<script>
+        // 1. Cập nhật số lượng giỏ hàng (Chạy ngay khi vào trang)
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem('greenlife_cart')) || [];
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            const cartText = document.querySelector('.cart-icon span');
+            if (cartText) {
+                cartText.innerText = `Giỏ hàng (${totalCount})`;
+            }
+        }
+        updateCartCount();
+
+        // 2. Xử lý sự kiện click nút "Thêm vào giỏ"
+        // Chọn tất cả các nút trong mặt sau của thẻ lật
+        const buyButtons = document.querySelectorAll('.book-back .btn');
+
+        buyButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault(); // Ngăn thẻ <a> chuyển trang
+
+                // Hiệu ứng đổi chữ nút bấm
+                const originalText = btn.innerText;
+                btn.innerText = "Đang thêm...";
+
+                // Tìm thẻ cha chứa toàn bộ thông tin (cả mặt trước và sau)
+                const card = e.target.closest('.book-inner');
+
+                // Lấy thông tin
+                // 1. Ảnh nằm ở mặt trước (.book-front img)
+                const img = card.querySelector('.book-front img').src;
+                // 2. Tên nằm ở mặt sau (h3)
+                const name = card.querySelector('h3').innerText;
+                // 3. Giá nằm ở mặt sau (.price)
+                const priceText = card.querySelector('.price').innerText;
+                const price = parseInt(priceText.replace(/\D/g, ''));
+
+                // Tạo đối tượng sản phẩm (Mặc định số lượng là 1)
+                const product = {
+                    name: name,
+                    price: price,
+                    image: img,
+                    quantity: 1 
+                };
+
+                // Lưu vào giỏ
+                addToCart(product);
+
+                // Trả lại chữ cũ cho nút
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                }, 500);
+            });
+        });
+
+        // Hàm xử lý lưu vào LocalStorage
+        function addToCart(product) {
+            let cart = JSON.parse(localStorage.getItem('greenlife_cart')) || [];
+            const existingItem = cart.find(item => item.name === product.name);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push(product);
+            }
+
+            localStorage.setItem('greenlife_cart', JSON.stringify(cart));
+            
+            updateCartCount();
+            alert(`Đã thêm "${product.name}" vào giỏ hàng thành công!`);
+        }
+    </script>
+</body>
+</html>
+
+</html>

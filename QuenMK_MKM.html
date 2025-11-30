@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/dangnhap_dangky.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>Đặt lại mật khẩu mới</title>
+</head>
+
+<body id="OTP">
+    <h1>Đặt lại mật khẩu mới</h1>
+
+    <div class="Nhap">
+
+        <!-- Mật khẩu 1 -->
+        <div id="MK">Mật khẩu mới</div>
+        <div class="password-box">
+            <input id="mk1" type="password">
+
+            <button type="button" id="eye-btn1" aria-label="Hiện mật khẩu">
+                <svg id="eye-icon1" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2">
+                    <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>
+            </button>
+        </div>
+        <div id="err1" class="error-msg"></div>
+
+        <!-- Mật khẩu 2 -->
+        <div id="MK1">Nhập lại mật khẩu</div>
+        <div class="password-box">
+            <input id="mk2" type="password">
+
+            <button type="button" id="eye-btn2" aria-label="Hiện mật khẩu">
+                <svg id="eye-icon2" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2">
+                    <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>
+            </button>
+        </div>
+        <div id="err2" class="error-msg"></div>
+
+        <button id="xacnhan" class="BDN1" type="button">Xác nhận</button>
+    </div>
+
+<script>
+    // ---------------- Con mắt 1 ----------------
+    const pw1 = document.getElementById("mk1");
+    const btnEye1 = document.getElementById("eye-btn1");
+    const icon1 = document.getElementById("eye-icon1");
+    let open1 = false;
+
+    btnEye1.addEventListener("click", () => {
+        open1 = !open1;
+        pw1.type = open1 ? "text" : "password";
+
+        icon1.innerHTML = open1 ? `
+            <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
+            <circle cx="12" cy="12" r="3"/>
+            <line x1="3" y1="3" x2="21" y2="21" stroke="black" stroke-width="2"/>
+        ` : `
+            <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
+            <circle cx="12" cy="12" r="3"/>
+        `;
+    });
+
+
+    // ---------------- Con mắt 2 ----------------
+    const pw2 = document.getElementById("mk2");
+    const btnEye2 = document.getElementById("eye-btn2");
+    const icon2 = document.getElementById("eye-icon2");
+    let open2 = false;
+
+    btnEye2.addEventListener("click", () => {
+        open2 = !open2;
+        pw2.type = open2 ? "text" : "password";
+
+        icon2.innerHTML = open2 ? `
+            <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
+            <circle cx="12" cy="12" r="3"/>
+            <line x1="3" y1="3" x2="21" y2="21" stroke="black" stroke-width="2"/>
+        ` : `
+            <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
+            <circle cx="12" cy="12" r="3"/>
+        `;
+    });
+
+    // ----- Mật khẩu input -----
+    const mkInput1 = document.getElementById("mk1");
+    const mkInput2 = document.getElementById("mk2");
+    const error1 = document.getElementById("err1");
+    const error2 = document.getElementById("err2");
+
+    // ----- Button xác nhận -----
+    const btnConfirm = document.getElementById("xacnhan");
+
+    btnConfirm.addEventListener("click", () => {
+        const pass1 = mkInput1.value.trim();
+        const pass2 = mkInput2.value.trim();
+
+        // reset lỗi
+        error1.textContent = "";
+        error2.textContent = "";
+        error1.style.display = "none";
+        error2.style.display = "none";
+
+        let valid = true;
+
+        // Kiểm tra trống
+        if (!pass1) {
+            error1.textContent = "Vui lòng nhập mật khẩu mới";
+            error1.style.display = "block";
+            valid = false;
+        }
+
+        if (!pass2) {
+            error2.textContent = "Vui lòng nhập lại mật khẩu";
+            error2.style.display = "block";
+            valid = false;
+        }
+
+        // Kiểm tra độ mạnh
+        if (pass1) {
+            const upper = /[A-Z]/.test(pass1);
+            const lower = /[a-z]/.test(pass1);
+            const number = /[0-9]/.test(pass1);
+            const special = /[!@#$%^&*(),.?":{}|<>]/.test(pass1);
+
+            if (pass1.length < 8 || !upper || !lower || !number || !special) {
+                error1.textContent = "Mật khẩu phải đủ mạnh: 8 ký tự, chữ hoa, chữ thường, số, ký tự đặc biệt.";
+                error1.style.display = "block";
+                valid = false;
+            }
+        }
+
+        // Kiểm tra trùng nhau
+        if (pass1 && pass2 && pass1 !== pass2) {
+            error2.textContent = "Mật khẩu nhập lại không khớp!";
+            error2.style.display = "block";
+            valid = false;
+        }
+
+        if (!valid) return;
+
+        // Lưu mật khẩu mới
+        localStorage.setItem("passUser", pass1);
+        alert("Đặt lại mật khẩu thành công!");
+        window.location.href = "Dangnhap.html";
+    });
+</script>
+
+</body>
+</html>

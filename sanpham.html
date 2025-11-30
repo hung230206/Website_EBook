@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>GreenLife - Sản phẩm</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* --- CSS RIÊNG CHO TRANG SẢN PHẨM --- */
+        .category-filter { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 40px; }
+        .filter-btn { padding: 10px 25px; border: 2px solid var(--primary); border-radius: 30px; background: transparent; color: var(--primary); font-weight: 700; cursor: pointer; transition: 0.3s; }
+        .filter-btn:hover, .filter-btn.active { background: var(--primary); color: var(--white); box-shadow: 0 4px 10px rgba(45, 106, 79, 0.3); }
+
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px; }
+        
+        .product-card { background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s; display: flex; flex-direction: column; }
+        .product-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+        .product-card.hide { display: none; }
+
+        .card-img { height: 250px; overflow: hidden; }
+        .card-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .product-card:hover .card-img img { transform: scale(1.1); }
+
+        .card-info { padding: 15px; text-align: center; }
+        .cat-tag { font-size: 12px; color: #888; text-transform: uppercase; margin-bottom: 5px; display: block; }
+        .p-name { font-size: 18px; font-weight: bold; color: var(--primary); display: block; margin-bottom: 10px; }
+        .p-price { color: var(--accent); font-weight: bold; font-size: 18px; }
+
+        .action-row { display: flex; align-items: center; gap: 10px; padding: 0 15px 20px 15px; margin-top: auto; }
+        .qty-input { width: 50px; padding: 10px 5px; border: 2px solid #e0e0e0; border-radius: 8px; text-align: center; font-weight: bold; color: var(--primary); outline: none; }
+        .qty-input:focus { border-color: var(--primary); }
+        
+        .btn-buy { flex: 1; padding: 12px; border: none; background: var(--primary); color: white; font-weight: bold; cursor: pointer; border-radius: 8px; transition: 0.3s; }
+        .btn-buy:hover { background: #1b4332; }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">GreenLife.</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="sanpham.html">Sản phẩm</a></li>
+                    <li><a href="gioithieu.html">Giới thiệu</a></li>
+                    <li><a href="lienhe.html">Liên hệ</a></li>
+                    <li><a href="dangnhap.html">Đăng nhập</a></li>
+                    <li><a href="dangki.html">Đăng kí</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="search-bar-section">
+        <div class="container search-wrapper">
+            <div class="search-box">
+                <input type="text" placeholder="Tìm kiếm loài cây bạn thích...">
+                <button class="search-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+            </div>
+
+            <a href="giohang.html"><div class="cart-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                <span>Giỏ hàng</span>
+               
+            </div>
+             </a>
+        </div>
+    </section>
+    <div class="container">
+        
+
+        <div class="category-filter">
+            <button class="filter-btn active" data-filter="all">Tất cả</button>
+            <button class="filter-btn" data-filter="de-ban">Cây để bàn</button>
+            <button class="filter-btn" data-filter="trong-nha">Cây trong nhà</button>
+            <button class="filter-btn" data-filter="ngoai-that">Cây ngoại thất</button>
+            <button class="filter-btn" data-filter="khac">Khác</button>
+        </div>
+
+        <div class="product-grid">
+
+            <div class="product-card" data-category="de-ban">
+                <div class="card-img"><img src="https://images.unsplash.com/photo-1509423350716-97f9360b4e09?w=600" alt="Xương rồng"></div>
+                <div class="card-info">
+                    <span class="cat-tag">Cây để bàn</span>
+                    <a href="#" class="p-name">Xương Rồng Mini</a>
+                    <span class="p-price">50.000đ</span>
+                </div>
+                <div class="action-row">
+                    <input type="number" class="qty-input" value="1" min="1">
+                    <button class="btn-buy">Thêm vào giỏ</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="trong-nha">
+                <div class="card-img"><img src="https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=600" alt="Monstera"></div>
+                <div class="card-info">
+                    <span class="cat-tag">Cây trong nhà</span>
+                    <a href="#" class="p-name">Monstera Trầu Bà</a>
+                    <span class="p-price">250.000đ</span>
+                </div>
+                <div class="action-row">
+                    <input type="number" class="qty-input" value="1" min="1">
+                    <button class="btn-buy">Thêm vào giỏ</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="ngoai-that">
+                <div class="card-img"><img src="img/hoagiay.webp" alt="Hoa Giấy"></div>
+                <div class="card-info">
+                    <span class="cat-tag">Cây ngoại thất</span>
+                    <a href="#" class="p-name">Hoa Giấy Ngũ Sắc</a>
+                    <span class="p-price">450.000đ</span>
+                </div>
+                <div class="action-row">
+                    <input type="number" class="qty-input" value="1" min="1">
+                    <button class="btn-buy">Thêm vào giỏ</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="khac">
+                <div class="card-img"><img src="https://images.unsplash.com/photo-1459156212016-c812468e2115?w=600" alt="Chậu"></div>
+                <div class="card-info">
+                    <span class="cat-tag">Dụng cụ</span>
+                    <a href="#" class="p-name">Chậu Đất Nung</a>
+                    <span class="p-price">80.000đ</span>
+                </div>
+                <div class="action-row">
+                    <input type="number" class="qty-input" value="1" min="1">
+                    <button class="btn-buy">Thêm vào giỏ</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="de-ban">
+                <div class="card-img"><img src="img/kiemtien.jpg" alt="Kim Tiền"></div>
+                <div class="card-info">
+                    <span class="cat-tag">Cây để bàn</span>
+                    <a href="#" class="p-name">Kim Tiền Tài Lộc</a>
+                    <span class="p-price">120.000đ</span>
+                </div>
+                <div class="action-row">
+                    <input type="number" class="qty-input" value="1" min="1">
+                    <button class="btn-buy">Thêm vào giỏ</button>
+                </div>
+            </div>
+            
+             <div class="product-card" data-category="ngoai-that">
+                <div class="card-img"><img src="img/tunglahan.jpg" alt="Tùng La Hán"></div>
+                <div class="card-info">
+                    <span class="cat-tag">Cây ngoại thất</span>
+                    <a href="#" class="p-name">Tùng La Hán Bonsai</a>
+                    <span class="p-price">1.200.000đ</span>
+                </div>
+                <div class="action-row">
+                    <input type="number" class="qty-input" value="1" min="1">
+                    <button class="btn-buy">Thêm vào giỏ</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // 1. Chức năng Lọc (Giữ nguyên cũ)
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                const filterValue = button.getAttribute('data-filter');
+                productCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.classList.remove('hide');
+                    } else {
+                        card.classList.add('hide');
+                    }
+                });
+            });
+        });
+
+        // 2. Chức năng Thêm vào giỏ hàng (MỚI)
+        const buyButtons = document.querySelectorAll('.btn-buy');
+
+        buyButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                // Tìm thẻ cha chứa sản phẩm
+                const card = e.target.closest('.product-card');
+                
+                // Lấy thông tin từ HTML
+                const img = card.querySelector('.card-img img').src;
+                const name = card.querySelector('.p-name').innerText;
+                const priceText = card.querySelector('.p-price').innerText;
+                // Chuyển giá từ "50.000đ" -> 50000 (số)
+                const price = parseInt(priceText.replace(/\D/g, '')); 
+                const qtyInput = card.querySelector('.qty-input');
+                const quantity = parseInt(qtyInput.value);
+
+                // Tạo object sản phẩm
+                const product = {
+                    name: name,
+                    price: price,
+                    image: img,
+                    quantity: quantity
+                };
+
+                addToCart(product);
+            });
+        });
+
+        function addToCart(product) {
+            // Lấy giỏ hàng từ bộ nhớ (nếu chưa có thì tạo mảng rỗng)
+            let cart = JSON.parse(localStorage.getItem('greenlife_cart')) || [];
+
+            // Kiểm tra xem sản phẩm đã có trong giỏ chưa
+            const existingItem = cart.find(item => item.name === product.name);
+
+            if (existingItem) {
+                // Nếu có rồi thì cộng thêm số lượng
+                existingItem.quantity += product.quantity;
+            } else {
+                // Nếu chưa thì thêm mới
+                cart.push(product);
+            }
+
+            // Lưu ngược lại vào bộ nhớ
+            localStorage.setItem('greenlife_cart', JSON.stringify(cart));
+
+            // Thông báo và cập nhật số trên icon giỏ hàng
+            alert(`Đã thêm ${product.quantity} ${product.name} vào giỏ!`);
+            updateCartCount();
+        }
+
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem('greenlife_cart')) || [];
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.querySelector('.cart-icon span').innerText = `Giỏ hàng (${totalCount})`;
+        }
+        
+        // Chạy ngay khi tải trang để cập nhật số lượng
+        updateCartCount();
+    </script>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 GreenLife. Lan tỏa lối sống xanh.</p>
+        </div>
+    </footer>
+</body>
+</html>

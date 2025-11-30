@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/dangnhap_dangky.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>Nhập OTP</title>
+</head>
+<body id="OTP">
+    <h1>Xác nhận mã OTP</h1>
+    <div class="Nhap">
+        <div id="MK">Mã OPT của bạn</div>
+        <input type="number" id="NMK">
+        <button type="button" id="BDN" class="BDN1">Xác nhận</button>
+    </div>
+    <script>
+    const confirmBtn = document.getElementById("BDN");
+    const otpInput = document.getElementById("NMK");
+
+    confirmBtn.addEventListener("click", () => {
+        const userOTP = otpInput.value.trim();
+        const realOTP = localStorage.getItem("resetOTP");
+
+        if (userOTP === "") {
+            alert("Vui lòng nhập mã OTP!");
+            return;
+        }
+
+        // kiểm tra đúng sai
+        if (userOTP === realOTP) {
+
+            // Xóa OTP để bảo mật
+            localStorage.removeItem("resetOTP");
+
+            // chuyển sang trang đặt mật khẩu mới
+            window.location.href = "QuenMK_MKM.html";
+
+        } else {
+            alert("Mã OTP không đúng. Vui lòng kiểm tra lại!");
+        }
+    });
+</script>
+
+</body>
+</html>
