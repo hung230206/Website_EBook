@@ -1,4 +1,91 @@
 /* =========================================
+   RESPONSIVE (Dành cho Mobile & Tablet)
+   ========================================= */
+
+/* Khi màn hình nhỏ hơn 768px (iPad dọc, Điện thoại) */
+@media (max-width: 768px) {
+
+    /* 1. Đưa Sidebar và Nội dung về 1 cột dọc */
+    .main-layout {
+        grid-template-columns: 1fr; /* Chỉ còn 1 cột chiếm hết màn hình */
+    }
+
+    /* 2. Sidebar không dính (sticky) nữa, cho trôi tự nhiên */
+    .sidebar {
+        position: static; 
+        margin-bottom: 30px;
+        order: -1; /* Đẩy Sidebar (Bộ lọc/Khuyến mãi) lên trên cùng */
+    }
+
+    /* 3. Header: Logo và Menu xếp chồng lên nhau */
+    header .container {
+        flex-direction: column; /* Xếp dọc */
+        gap: 15px;
+    }
+
+    /* 4. Menu điều hướng: Căn giữa và cho phép xuống dòng */
+    .nav-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .nav-links a {
+        font-size: 14px; /* Chữ nhỏ lại xíu cho vừa */
+        padding: 5px 10px;
+        background: rgba(255,255,255,0.1); /* Thêm nền nhẹ cho dễ bấm */
+        border-radius: 4px;
+    }
+
+    /* 5. Thanh tìm kiếm: Xếp dọc */
+    .search-wrapper {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .search-box {
+        width: 100%; /* Ô tìm kiếm full màn hình */
+    }
+
+    /* 6. Form liên hệ (Trang liên hệ) */
+    .contact-section {
+        grid-template-columns: 1fr; /* Về 1 cột */
+    }
+
+    /* 7. Giỏ hàng (Trang giỏ hàng) */
+    .cart-table thead {
+        display: none; /* Ẩn tiêu đề bảng trên mobile cho đỡ chật */
+    }
+
+    .cart-table, .cart-table tbody, .cart-table tr, .cart-table td {
+        display: block; /* Chuyển bảng thành dạng khối */
+        width: 100%;
+    }
+
+    .cart-table tr {
+        margin-bottom: 20px;
+        border: 1px solid #eee;
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    .cart-table td {
+        text-align: right; /* Căn phải nội dung */
+        padding: 10px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Thêm nhãn giả cho từng dòng trên mobile */
+    .cart-table td::before {
+        content: attr(data-label); /* Kỹ thuật nâng cao: Lấy tên cột */
+        float: left;
+        font-weight: bold;
+        color: #666;
+    }
+}
+/* =========================================
    1. CẤU HÌNH CHUNG (GLOBAL)
    ========================================= */
 :root {
