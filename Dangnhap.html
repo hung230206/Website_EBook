@@ -103,7 +103,7 @@ header .container {
 
 .password-box input {
     width: 93%;
-    padding-right: 40px; /* chừa chỗ cho con mắt */
+    padding-right: 40px; 
 }
 
 #eye-btn, #eye-btn1, #eye-btn2{
@@ -120,13 +120,13 @@ header .container {
 }
 
 #eye-btn svg, #eye-btn1 svg, #eye-btn2 svg{
-    pointer-events: none; /* để click không vướng SVG */
+    pointer-events: none; 
 }
 .error-msg {
     color: red;
     font-size: 0.9rem;
     margin: auto auto 4px 1px;
-    display: none; /* mặc định ẩn */
+    display: none;
 }
 #h{
     margin: 0%;
@@ -161,7 +161,7 @@ header .container {
     color: red;
     font-size: 0.9rem;
     margin: auto auto 5px 10px;
-    display: none; /* mặc định ẩn */
+    display: none; 
 }
 #gui{
     background-color: #51a5f9;
@@ -178,8 +178,8 @@ header .container {
 #gui:active { transform: translateY(0.3px); }
 #gui:focus { outline: 3px solid rgba(21,101,192,.25); }
 #gui:hover {
-    background-color: #51a5f9;       /* giữ màu gốc */
-    box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.1); /* phủ lớp trắng nhạt */
+    background-color: #51a5f9;       
+    box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.1); 
 }
 #quaylaiDN, #help{
     margin-top: 30px;
@@ -213,11 +213,11 @@ header .container {
         <div class="Nhap">
             <div id="TK">Email</div>
             <input id="NTK" type="text">
-            <div id="errNTK" class="error-msg"></div> <!-- hiển thị lỗi -->
+            <div id="errNTK" class="error-msg"></div>
             <div id="MK">Mật khẩu</div>
             <div class="password-box">
                 <input id="NMK" type="password">
-                <!-- Con mắt 2D nằm *bên trong* input -->
+                
                 <button type="button" id="eye-btn" aria-label="Hiện mật khẩu">
                     <svg id="eye-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2">
                         <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
@@ -229,101 +229,9 @@ header .container {
             <a href="QuenMK.html" id="QMK">Quên mật khẩu?</a>     
             <button  class="BDN1" id="BDN"  type="button" aria-label="Đăng nhập">Đăng nhập</button>
         </div>  
-            <div id="quaylaiDN">Bạn chưa có tài khoản? <a href="Dangky.html" id="linkDN">Đăng ký</a></div>
-            <div id="help">Cần thêm trợ giúp <a href="" id="linkLH">Liên hệ</a></div>   
-        <script>
-            // --- Con mắt 2D ---
-            const pw = document.getElementById("NMK");
-            const btn = document.getElementById("eye-btn");
-            const icon = document.getElementById("eye-icon");
-
-            let open = true;
-
-            btn.addEventListener("click", () => {
-                if (open) {
-                    pw.type = "text";
-                    open = false;
-                    icon.innerHTML = `
-                        <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
-                        <circle cx="12" cy="12" r="3"/>
-                        <line x1="3" y1="3" x2="21" y2="21" stroke="black" stroke-width="2"/>
-                    `;
-                } else {
-                    pw.type = "password";
-                    open = true;
-                    icon.innerHTML = `
-                        <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
-                        <circle cx="12" cy="12" r="3"/>
-                    `;
-                }
-            });
-
-            // --- Kiểm tra email + mật khẩu ---
-            const loginBtn = document.getElementById("BDN");
-            const emailInput = document.getElementById("NTK");
-            const passwordInput = document.getElementById("NMK");
-            const emailError = document.getElementById("errNTK");
-            const passwordError = document.getElementById("errMK");
-
-            loginBtn.addEventListener("click", () => {
-                const email = emailInput.value.trim();
-                const password = passwordInput.value.trim();
-                let valid = true;
-
-                // reset lỗi
-                emailError.style.display = "none";
-                emailError.textContent = "";
-                passwordError.style.display = "none";
-                passwordError.textContent = "";
-
-                // kiểm tra email
-                const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/i;
-                if (email === "") {
-                    emailError.textContent = "Vui lòng nhập email";
-                    emailError.style.display = "block";
-                    valid = false;
-                } else if (!emailPattern.test(email)) {
-                    emailError.textContent = "Email không hợp lệ";
-                    emailError.style.display = "block";
-                    valid = false;
-                }
-
-                // kiểm tra mật khẩu
-                if (password === "") {
-                    passwordError.textContent = "Vui lòng nhập mật khẩu";
-                    passwordError.style.display = "block";
-                    valid = false;
-                } else if (password.length < 8) {
-                    passwordError.textContent = "Mật khẩu quá ngắn (ít nhất 8 ký tự)";
-                    passwordError.style.display = "block";
-                    valid = false;
-                } else {
-                    const upperCase = /[A-Z]/.test(password);
-                    const lowerCase = /[a-z]/.test(password);
-                    const number = /[0-9]/.test(password);
-                    const specialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-
-                    if (!upperCase || !lowerCase || !number || !specialChar) {
-                        passwordError.textContent = "Mật khẩu yếu. Bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt.";
-                        passwordError.style.display = "block";
-                        valid = false;
-                    }
-                }
-
-                // --- kiểm tra với dữ liệu đăng ký lưu trong localStorage ---
-                if (valid) {
-                    const storedEmail = localStorage.getItem("emailUser");
-                    const storedPass = localStorage.getItem("passUser");
-
-                    if (email === storedEmail && password === storedPass) {
-                        window.location.href = "Trangchu.html"; // chuyển sang trang chủ
-                    } else {
-                        passwordError.textContent = "Sai email hoặc mật khẩu!";
-                        passwordError.style.display = "block";
-                    }
-                }
-            });
-        </script>
+            <div id="quaylaiDN">Bạn chưa có tài khoản? <a href="dangki.html" id="linkDN">Đăng ký</a></div>
+            <div id="help">Cần thêm trợ giúp <a href="lienhe.html" id="linkLH">Liên hệ</a></div>   
+       <script src="js/main.js"></script>   
 
 </body>
 </html>

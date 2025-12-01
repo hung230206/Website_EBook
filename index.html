@@ -2,21 +2,18 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-   
     <title>GreenLife - Trang chủ</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
     <style>
-        /* --- CSS RIÊNG CHO TRANG CHỦ --- */
         .main-layout {
             display: grid;
-            grid-template-columns: 280px 1fr; 
+            grid-template-columns: 280px 1fr;
             gap: 30px;
             align-items: start;
         }
 
-        /* Sidebar */
         .sidebar {
             background: var(--white);
             border: 2px solid var(--accent); 
@@ -39,7 +36,6 @@
         .promo-item p { font-size: 0.9rem; color: #666; margin-bottom: 5px; }
         .promo-date { font-size: 0.8rem; color: #999; font-style: italic; }
 
-        /* Hero Banner */
         .hero {
             background: linear-gradient(rgba(45, 106, 79, 0.85), rgba(27, 67, 50, 0.8)), url('https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
@@ -53,7 +49,6 @@
         .hero h1 { font-size: 2.2rem; margin-bottom: 10px; }
         .hero .btn { background: white; color: var(--primary); }
 
-        /* Grid & Flip Card */
         .book-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
         .book-flip-container { background-color: transparent; width: 100%; height: 360px; perspective: 1000px; cursor: pointer; }
         .book-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.8s; transform-style: preserve-3d; box-shadow: var(--shadow); border-radius: 10px; }
@@ -81,7 +76,7 @@
                 <ul class="nav-links">
                     <li><a href="index.html">Trang chủ</a></li>
                     <li><a href="sanpham.html">Sản phẩm</a></li>
-                    <li><a href="gioithieu.html">Giới thiệu </a></li>
+                    <li><a href="gioithieu.html">Giới thiệu</a></li>
                     <li><a href="lienhe.html">Liên hệ</a></li>
                     <li><a href="dangnhap.html">Đăng nhập</a></li>
                     <li><a href="dangki.html">Đăng kí</a></li>
@@ -99,11 +94,12 @@
                 </button>
             </div>
 
-            <a href="giohang.html"><div class="cart-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                <span>Giỏ hàng (2)</span>
-            </div>
-             </a>
+            <a href="giohang.html">
+                <div class="cart-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                    <span>Giỏ hàng (2)</span>
+                </div>
+            </a>
         </div>
     </section>
 
@@ -149,8 +145,9 @@
 
             <h2 style="color: var(--primary-color); margin-bottom: 20px; border-left: 5px solid var(--primary-color); padding-left: 10px;">Cây Cảnh Nổi Bật</h2>
             
-            <div class="book-grid-3"> 
-                 <div class="book-flip-container">
+            <div class="book-grid-3">
+                <!-- Sản phẩm 1 -->
+                <div class="book-flip-container">
                     <div class="book-inner">
                         <div class="book-front">
                             <img src="https://trucvufarm.com.vn/wp-content/uploads/2024/10/Cay-Bang-Singapore-4.jpg" alt="Bàng Singapore">
@@ -164,9 +161,8 @@
                         </div>
                     </div>
                 </div>
-                
-                
 
+                <!-- Sản phẩm 2 -->
                 <div class="book-flip-container">
                     <div class="book-inner">
                         <div class="book-front">
@@ -182,6 +178,7 @@
                     </div>
                 </div>
 
+                <!-- Sản phẩm 3 -->
                 <div class="book-flip-container">
                     <div class="book-inner">
                         <div class="book-front">
@@ -190,13 +187,14 @@
                         <div class="book-back">
                             <h3>Xương Rồng Tai Thỏ</h3>
                             <p class="author">Loại: Để bàn</p>
-                            <p style="font-size: 0.9rem; margin-bottom: 10px;">Dễ chăm sóc, chịu hạn tốt, hình dáng cute...</p>
+                            <p style="font-size: 0.9rem; margin-bottom: 10px;">Dễ chăm sóc, chịu hạn tốt, hình dáng đáng yêu...</p>
                             <span class="price">85.000đ</span>
                             <a href="giohang.html" class="btn">Thêm vào giỏ hàng</a>
                         </div>
                     </div>
                 </div>
-                
+
+                <!-- Sản phẩm 4 -->
                 <div class="book-flip-container">
                     <div class="book-inner">
                         <div class="book-front">
@@ -211,10 +209,9 @@
                         </div>
                     </div>
                 </div>
-                 
-               
 
-<div class="book-flip-container">
+                <!-- Sản phẩm 5 -->
+                <div class="book-flip-container">
                     <div class="book-inner">
                         <div class="book-front">
                             <img src="img/monstera.jpg" alt="Monstera">
@@ -222,15 +219,14 @@
                         <div class="book-back">
                             <h3>Monstera Trầu Bà</h3>
                             <p class="author">Loại: Cây nội thất</p>
-                            <p style="font-size: 0.9rem; margin-bottom: 10px;">Lá xẻ độc đáo, biểu tượng của sự sang trọng...</p>
+                            <p style="font-size: 0.9rem; margin-bottom: 10px;">Lá xẻ độc đáo, mang vẻ đẹp sang trọng...</p>
                             <span class="price">250.000đ</span>
                             <a href="giohang.html" class="btn">Thêm vào giỏ hàng</a>
                         </div>
                     </div>
                 </div>
 
-
-
+                <!-- Sản phẩm 6 -->
                 <div class="book-flip-container">
                     <div class="book-inner">
                         <div class="book-front">
@@ -239,7 +235,7 @@
                         <div class="book-back">
                             <h3>Lan Ý (Huệ Tây)</h3>
                             <p class="author">Loại: Có hoa</p>
-                            <p style="font-size: 0.9rem; margin-bottom: 10px;">Hoa trắng tinh khôi, cân bằng năng lượng...</p>
+                            <p style="font-size: 0.9rem; margin-bottom: 10px;">Hoa trắng tinh khôi, thanh lọc không khí...</p>
                             <span class="price">120.000đ</span>
                             <a href="giohang.html" class="btn">Thêm vào giỏ hàng</a>
                         </div>
@@ -257,80 +253,6 @@
         </div>
     </footer>
 
+    <script src="js/main.js"></script>
 </body>
-<script>
-        // 1. Cập nhật số lượng giỏ hàng (Chạy ngay khi vào trang)
-        function updateCartCount() {
-            let cart = JSON.parse(localStorage.getItem('greenlife_cart')) || [];
-            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-            
-            const cartText = document.querySelector('.cart-icon span');
-            if (cartText) {
-                cartText.innerText = `Giỏ hàng (${totalCount})`;
-            }
-        }
-        updateCartCount();
-
-        // 2. Xử lý sự kiện click nút "Thêm vào giỏ"
-        // Chọn tất cả các nút trong mặt sau của thẻ lật
-        const buyButtons = document.querySelectorAll('.book-back .btn');
-
-        buyButtons.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault(); // Ngăn thẻ <a> chuyển trang
-
-                // Hiệu ứng đổi chữ nút bấm
-                const originalText = btn.innerText;
-                btn.innerText = "Đang thêm...";
-
-                // Tìm thẻ cha chứa toàn bộ thông tin (cả mặt trước và sau)
-                const card = e.target.closest('.book-inner');
-
-                // Lấy thông tin
-                // 1. Ảnh nằm ở mặt trước (.book-front img)
-                const img = card.querySelector('.book-front img').src;
-                // 2. Tên nằm ở mặt sau (h3)
-                const name = card.querySelector('h3').innerText;
-                // 3. Giá nằm ở mặt sau (.price)
-                const priceText = card.querySelector('.price').innerText;
-                const price = parseInt(priceText.replace(/\D/g, ''));
-
-                // Tạo đối tượng sản phẩm (Mặc định số lượng là 1)
-                const product = {
-                    name: name,
-                    price: price,
-                    image: img,
-                    quantity: 1 
-                };
-
-                // Lưu vào giỏ
-                addToCart(product);
-
-                // Trả lại chữ cũ cho nút
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                }, 500);
-            });
-        });
-
-        // Hàm xử lý lưu vào LocalStorage
-        function addToCart(product) {
-            let cart = JSON.parse(localStorage.getItem('greenlife_cart')) || [];
-            const existingItem = cart.find(item => item.name === product.name);
-
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push(product);
-            }
-
-            localStorage.setItem('greenlife_cart', JSON.stringify(cart));
-            
-            updateCartCount();
-            alert(`Đã thêm "${product.name}" vào giỏ hàng thành công!`);
-        }
-    </script>
-</body>
-</html>
-
 </html>

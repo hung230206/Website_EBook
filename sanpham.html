@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
-        /* --- CSS RIÊNG CHO TRANG SẢN PHẨM --- */
         .category-filter { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 40px; }
         .filter-btn { padding: 10px 25px; border: 2px solid var(--primary); border-radius: 30px; background: transparent; color: var(--primary); font-weight: 700; cursor: pointer; transition: 0.3s; }
         .filter-btn:hover, .filter-btn.active { background: var(--primary); color: var(--white); box-shadow: 0 4px 10px rgba(45, 106, 79, 0.3); }
@@ -66,14 +65,12 @@
             <a href="giohang.html"><div class="cart-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
                 <span>Giỏ hàng</span>
-               
             </div>
              </a>
         </div>
     </section>
-    <div class="container">
-        
 
+    <div class="container">
         <div class="category-filter">
             <button class="filter-btn active" data-filter="all">Tất cả</button>
             <button class="filter-btn" data-filter="de-ban">Cây để bàn</button>
@@ -149,7 +146,7 @@
                 </div>
             </div>
             
-             <div class="product-card" data-category="ngoai-that">
+            <div class="product-card" data-category="ngoai-that">
                 <div class="card-img"><img src="img/tunglahan.jpg" alt="Tùng La Hán"></div>
                 <div class="card-info">
                     <span class="cat-tag">Cây ngoại thất</span>
@@ -165,87 +162,7 @@
         </div>
     </div>
 
-    <script>
-        // 1. Chức năng Lọc (Giữ nguyên cũ)
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const productCards = document.querySelectorAll('.product-card');
-
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                const filterValue = button.getAttribute('data-filter');
-                productCards.forEach(card => {
-                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
-                        card.classList.remove('hide');
-                    } else {
-                        card.classList.add('hide');
-                    }
-                });
-            });
-        });
-
-        // 2. Chức năng Thêm vào giỏ hàng (MỚI)
-        const buyButtons = document.querySelectorAll('.btn-buy');
-
-        buyButtons.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                // Tìm thẻ cha chứa sản phẩm
-                const card = e.target.closest('.product-card');
-                
-                // Lấy thông tin từ HTML
-                const img = card.querySelector('.card-img img').src;
-                const name = card.querySelector('.p-name').innerText;
-                const priceText = card.querySelector('.p-price').innerText;
-                // Chuyển giá từ "50.000đ" -> 50000 (số)
-                const price = parseInt(priceText.replace(/\D/g, '')); 
-                const qtyInput = card.querySelector('.qty-input');
-                const quantity = parseInt(qtyInput.value);
-
-                // Tạo object sản phẩm
-                const product = {
-                    name: name,
-                    price: price,
-                    image: img,
-                    quantity: quantity
-                };
-
-                addToCart(product);
-            });
-        });
-
-        function addToCart(product) {
-            // Lấy giỏ hàng từ bộ nhớ (nếu chưa có thì tạo mảng rỗng)
-            let cart = JSON.parse(localStorage.getItem('greenlife_cart')) || [];
-
-            // Kiểm tra xem sản phẩm đã có trong giỏ chưa
-            const existingItem = cart.find(item => item.name === product.name);
-
-            if (existingItem) {
-                // Nếu có rồi thì cộng thêm số lượng
-                existingItem.quantity += product.quantity;
-            } else {
-                // Nếu chưa thì thêm mới
-                cart.push(product);
-            }
-
-            // Lưu ngược lại vào bộ nhớ
-            localStorage.setItem('greenlife_cart', JSON.stringify(cart));
-
-            // Thông báo và cập nhật số trên icon giỏ hàng
-            alert(`Đã thêm ${product.quantity} ${product.name} vào giỏ!`);
-            updateCartCount();
-        }
-
-        function updateCartCount() {
-            let cart = JSON.parse(localStorage.getItem('greenlife_cart')) || [];
-            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-            document.querySelector('.cart-icon span').innerText = `Giỏ hàng (${totalCount})`;
-        }
-        
-        // Chạy ngay khi tải trang để cập nhật số lượng
-        updateCartCount();
-    </script>
+    <script src="js/main.js"></script>
     <footer>
         <div class="container">
             <p>&copy; 2025 GreenLife. Lan tỏa lối sống xanh.</p>

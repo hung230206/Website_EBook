@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
-        /* --- CSS RIÊNG CHO GIỎ HÀNG --- */
         .cart-page { background: #fff; padding: 30px; border-radius: 15px; box-shadow: var(--shadow); }
         .cart-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
         .cart-table th, .cart-table td { padding: 15px; text-align: left; border-bottom: 1px solid #eee; }
@@ -61,7 +60,7 @@
                     </tr>
                 </thead>
                 <tbody id="cart-body">
-                    </tbody>
+                </tbody>
             </table>
 
             <div class="cart-summary">
@@ -82,94 +81,7 @@
         </div>
     </footer>
 
-    <script>
-        // 1. Hàm hiển thị giỏ hàng
-        function loadCart() {
-            const cart = JSON.parse(localStorage.getItem('greenlife_cart')) || [];
-            const tbody = document.getElementById('cart-body');
-            const totalEl = document.getElementById('total-price');
-            
-            tbody.innerHTML = '';
-            let grandTotal = 0;
-
-            if (cart.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 30px; color: #777;">Giỏ hàng đang trống 🌿. <br><a href="sanpham.html" style="color:var(--primary)">Đi mua ngay</a></td></tr>';
-                totalEl.innerText = '0đ';
-                return;
-            }
-
-            cart.forEach((item, index) => {
-                const total = item.price * item.quantity;
-                grandTotal += total;
-
-                const priceFormatted = item.price.toLocaleString('vi-VN') + 'đ';
-                const totalFormatted = total.toLocaleString('vi-VN') + 'đ';
-
-                const row = `
-                    <tr>
-                        <td>
-                            <div class="cart-item-info">
-                                <img src="${item.image}" alt="${item.name}" class="cart-item-img">
-                                <b style="color: var(--primary)">${item.name}</b>
-                            </div>
-                        </td>
-                        <td>${priceFormatted}</td>
-                        <td>
-                            <div class="qty-box">
-                                <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
-                                <div class="qty-val">${item.quantity}</div>
-                                <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
-                            </div>
-                        </td>
-                        <td style="color: var(--accent); font-weight:bold;">${totalFormatted}</td>
-                        <td>
-                            <button class="btn-remove" onclick="removeItem(${index})">🗑️</button>
-                        </td>
-                    </tr>
-                `;
-                tbody.innerHTML += row;
-            });
-
-            totalEl.innerText = grandTotal.toLocaleString('vi-VN') + 'đ';
-        }
-
-        // 2. Hàm thay đổi số lượng (+ hoặc -)
-        function changeQty(index, delta) {
-            let cart = JSON.parse(localStorage.getItem('greenlife_cart')) || [];
-            
-            // Cộng trừ số lượng
-            cart[index].quantity += delta;
-
-            // Nếu số lượng giảm xuống < 1 thì hỏi có xóa không
-            if (cart[index].quantity < 1) {
-                const confirmDelete = confirm("Bạn có muốn xóa sản phẩm này khỏi giỏ hàng?");
-                if (confirmDelete) {
-                    cart.splice(index, 1);
-                } else {
-                    cart[index].quantity = 1; // Nếu không xóa thì trả về 1
-                }
-            }
-
-            // Lưu lại và vẽ lại bảng
-            localStorage.setItem('greenlife_cart', JSON.stringify(cart));
-            loadCart();
-        }
-
-        // 3. Hàm xóa sản phẩm
-        function removeItem(index) {
-            if(confirm("Xóa sản phẩm này?")) {
-                let cart = JSON.parse(localStorage.getItem('greenlife_cart')) || [];
-                cart.splice(index, 1); 
-                localStorage.setItem('greenlife_cart', JSON.stringify(cart)); 
-                loadCart(); 
-            }
-        }
-
-        // Chạy khi tải trang
-        loadCart();
-    </script>
-    
+   <script src="js/main.js"></script>
 
 </body>
-
 </html>
